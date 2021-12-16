@@ -1,5 +1,6 @@
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #f5f5f7;
 }
 
 /* CABEÇALHO */
@@ -26,7 +27,7 @@ body {
 }
 
 .estiloGeralBotoes--filtrarHortifruti {
-    background-color: tomato;
+    background-color: #cd4613;
     color: white;
 }
 
@@ -37,7 +38,9 @@ body {
 
 .campoBuscaPorNome {
     border-radius: 5px 0 0 5px;
-    border: 1px solid black;
+    border: 0.2px solid #55545425;
+    background: #f3f3f385;
+    box-shadow: inset -2px 1px 4px -2px #919191, inset 6px -2px 15px -8px #c0c0c0;
     padding: 0 10px;
 }
 
@@ -57,12 +60,12 @@ main{
 
 .containerListaProdutos {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .containerListaProdutos ul {
-    list-style: none;
+     
     text-align: center;
     display: flex;
     justify-content: center;
@@ -72,10 +75,11 @@ main{
     color: black;
     font-weight: bold;
     padding: 20px;
-    margin: 10px;
-    border-radius: 5px;
-    transition: ease-in-out .1s;
+    margin: 5px;
+    border-radius: 12px;
+    transition: all 0.1s ease-in-out 0s;
     width: 20%;
+    box-shadow: rgb(231 231 231) 1px 20px 20px 7px, rgb(255 255 255) -2px -2px 10px 4px;
 }
 
 .containerListaProdutos ul li:not(ol li):hover {
@@ -86,29 +90,35 @@ main{
     width: 100%;
     max-width: 80px;
 }
-
+.containerListaProdutos ul li img:hover {
+    border-radius: 50px;
+    box-shadow: rgb(145 145 145) -2px 1px 4px -2px inset, rgb(192 192 192) 6px -2px 15px -8px inset;
+}
 .containerListaProdutos ul li h3 {
     font-size: 1.5rem;
 }
 
 .containerListaProdutos ul li p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    margin: 10px 0 20px 0;
 }
 .containerListaProdutos ul li span {
     font-size: 0.8rem;
     font-weight: 500;
     margin-top: 10px;
     display: inline-block;
+   
 }
 
 .containerListaProdutos ul li button {
-    background-color: #009f5a;
+    background-color: #05683e;
     border: none;
     border-radius: 5px;
     font-weight: bold;
     color: white;
     cursor: pointer;
     height: 40px;
+    margin-top: 15px;
 }
 .containerListaProdutos ul li button:hover {
     box-shadow: 1px 1px 2px rgb(189, 189, 189);
@@ -121,8 +131,13 @@ main{
 .containerListaProdutos ul li ol li{
     font-size: 13px;
     margin: 7px 0;
+    
 }
-
+.containerListaProdutos ul li ol li span{
+    font-weight: 800;
+    margin-top: 5px;
+    
+}
 /* PREÇO TOTAL */
 .containerPrecoTotal{
     text-align: center;
@@ -140,6 +155,10 @@ main{
     width: 450px;
     text-align: center;
     border: 1px solid #ccc;
+    border-radius: 12px;
+    background: #ffffff;
+    box-shadow: inset -2px 1px 4px -2px #919191, inset 6px -2px 15px -8px #c0c0c0;
+                
 }
 .containerCarrinho img {
     max-width: 100px;
@@ -165,4 +184,9 @@ main{
 
 .containerCarrinho li ol{
     display: none;
+}
+
+.produtoNaoEncontrado{
+    display: none;
+     
 }

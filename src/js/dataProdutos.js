@@ -37,7 +37,7 @@ const produtos = [
         preco: '2.00',
         secao: 'Hortifruti',
         categoria: 'fruta',
-        img: './src/img/maça.png',
+        img: './src/img/maca.png',
         promocao: true,
         precoPromocao: '1.50',
         componentes: [
