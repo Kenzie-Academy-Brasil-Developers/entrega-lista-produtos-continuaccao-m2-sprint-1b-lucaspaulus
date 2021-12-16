@@ -73,7 +73,8 @@ const montarListaProdutos = (arrayProdutos, callTemplateProdutos, vitrine)=>{
     arrayProdutos.forEach(function(produto) {
        
         const templateProduto = callTemplateProdutos(produto)
-        vitrine.appendChild(templateProduto)  
+        vitrine.appendChild(templateProduto)
+        
        
     });   
     
@@ -87,6 +88,7 @@ function interceptarAcoes (event){
     if(botaoAdicionarProduto.tagName === "BUTTON"){
         const idProduto = botaoAdicionarProduto.getAttribute("data-id")
         adicionarProdutoCarrinho(idProduto)
+        
     }
    
 }
@@ -98,9 +100,14 @@ function adicionarProdutoCarrinho(idProduto){
     
     const produtoFiltrado = produtos.find((produto)=>produto.id == idProduto)
     carrinhoCompra.push(produtoFiltrado) 
-    totalProdutos.innerText = " " + somaTotalProdutos(produtoFiltrado) + ".00"
+     
     montarListaProdutos(carrinhoCompra, templateProdutos, vitrineCarrinho)
-    
+    somarValoresCarrinho(carrinhoCompra) 
+}
+
+
+function somarValoresCarrinho(valor){      
+    totalProdutos.innerText = " " + somaTotalProdutos(valor) + ".00"
 }
 //-------------------------------------------------------------------------
 
