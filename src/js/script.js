@@ -203,15 +203,15 @@ function MensagemProdutoNaoEncontrado(msgPesquisaProdutos){
  
     //Mostra uma mensagem de produto nao encontrado, para pesquisas vazias
     if(msgPesquisaProdutos=== ''){
-        produtoNaoEncontrado.classList.remove('produtoNaoEncontradoHide')
         produtoNaoEncontrado.classList.add('produtoNaoEncontrado')
+        produtoNaoEncontrado.classList.remove('produtoNaoEncontradoHide')
         produtoNaoEncontrado.innerText = "Nenhum produto corresponde a sua pesquisa"
         document.querySelector(".campoBuscaPorNome").placeholder = "Digite algo para pesquisar"
         
     }
     else{
     //Mostra uma mensagem caso nao encontre o produto, para pesquisas não vazias
-    produtoNaoEncontrado.classList.remove('produtoNaoEncontrado')
+    produtoNaoEncontrado.classList.remove('produtoNaoEncontradoHide')
     produtoNaoEncontrado.innerText = `O produto "${msgPesquisaProdutos}" não se encontra em nosso sistema`
     }
    
