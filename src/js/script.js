@@ -203,9 +203,8 @@ function MensagemProdutoNaoEncontrado(msgPesquisaProdutos){
  
     //Mostra uma mensagem de produto nao encontrado, para pesquisas vazias
     if(msgPesquisaProdutos=== ''){
-        produtoNaoEncontrado.classList.remove('produtoNaoEncontrado')
-        produtoNaoEncontrado.style.color = "black"
-        produtoNaoEncontrado.style.fontWeight = "bold"
+        produtoNaoEncontrado.classList.remove('produtoNaoEncontradoHide')
+        produtoNaoEncontrado.classList.add('produtoNaoEncontrado')
         produtoNaoEncontrado.innerText = "Nenhum produto corresponde a sua pesquisa"
         document.querySelector(".campoBuscaPorNome").placeholder = "Digite algo para pesquisar"
         

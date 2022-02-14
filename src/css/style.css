@@ -187,6 +187,11 @@ main{
 }
 
 .produtoNaoEncontrado{
+    color: black;
+    font-weight: bold;
+}
+
+.produtoNaoEncontradoHide{
     display: none;
      
 }
