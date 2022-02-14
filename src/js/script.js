@@ -62,7 +62,7 @@ const templateProdutos = ({id,nome,preco,secao,img,componentes}) => {
         // Adiciona o botão de adicionar ao carrinho ao elemento pai > li
         li.appendChild(button)
         
-        produtoNaoEncontrado.classList.add('produtoNaoEncontrado')
+        produtoNaoEncontrado.classList.add('produtoNaoEncontradoHide')
          
         return li
 }
@@ -132,9 +132,9 @@ botaoMostrarHortifruti.addEventListener('click', filtrarPorHortifruti)
 //---------------------BUSCA PELO NOME-------------------------------------
 //Realiza a busca dos produtos pelo nome, seção e categoria
 function buscaPorNome(){
-	 let pesquisarProdutos = pesquisaSemAcento(campoDeBusca.value.toLowerCase().trim()) 
-
-
+	let pesquisarProdutos = campoDeBusca.value.toLowerCase() 
+    
+     
     const produtoPeloNome = produtos.filter((produto) =>{
         //Verifica as condições para que a busca retorne para os nomes dos produtos, seção e categoria
         
@@ -156,6 +156,7 @@ function buscaPorNome(){
    		}
 	 
 	})
+ 
     montarListaProdutos(produtoPeloNome, templateProdutos, vitrinePrincipal)
     
 }
@@ -199,11 +200,11 @@ function somaTotalProdutos(valorProduto) {
 
 //Função que remove a mensagem de produto nao encontrado, para outras áreas do site
 function MensagemProdutoNaoEncontrado(msgPesquisaProdutos){
-
+    produtoNaoEncontrado.classList.add('produtoNaoEncontrado')
  
     //Mostra uma mensagem de produto nao encontrado, para pesquisas vazias
-    if(msgPesquisaProdutos=== ''){
-        produtoNaoEncontrado.classList.add('produtoNaoEncontrado')
+    if(msgPesquisaProdutos === ''){
+        
         produtoNaoEncontrado.classList.remove('produtoNaoEncontradoHide')
         produtoNaoEncontrado.innerText = "Nenhum produto corresponde a sua pesquisa"
         document.querySelector(".campoBuscaPorNome").placeholder = "Digite algo para pesquisar"
