@@ -14,6 +14,9 @@ const botaoMostrarTodosProdutos = document.querySelector('.estiloGeralBotoes--mo
 
 //Selecionando o preço total, para adicionar ao carrinho depois
 const totalProdutos = document.querySelector('#precoTotal')
+
+//Seleciona o input do campo de busca
+const campoDeBusca = document.getElementsByClassName("campoBuscaPorNome")[0]
  
 //Cria o template dos produtos da vitrine
 const templateProdutos = ({id,nome,preco,secao,img,componentes}) => {
@@ -95,7 +98,7 @@ function interceptarAcoes (event){
 //-------------------------------------------------------------------------
 
 //Cria a função de adicionar produto ao carrinho
-const carrinhoCompra = []
+let carrinhoCompra = []
 function adicionarProdutoCarrinho(idProduto){
     
     const produtoFiltrado = produtos.find((produto)=>produto.id == idProduto)
@@ -104,7 +107,6 @@ function adicionarProdutoCarrinho(idProduto){
     montarListaProdutos(carrinhoCompra, templateProdutos, vitrineCarrinho)
     somarValoresCarrinho(carrinhoCompra) 
 }
-
 
 function somarValoresCarrinho(valor){      
     totalProdutos.innerText = " " + somaTotalProdutos(valor) + ".00"
@@ -119,13 +121,7 @@ function filtrarPorHortifruti() {
     })
 
     montarListaProdutos(listaHortifruti, templateProdutos, vitrinePrincipal)
-    console.log(listaHortifruti)
-
-    /*
-    //Soma os produtos filtrados pela seção Hortifruti
-    totalProdutos.innerText = " " + somaTotalProdutos(listaHortifruti) + ".00"
-    console.log(somaTotalProdutos(listaHortifruti))
-    */
+  
 }
 
 // Adicionando event listener de clique, e executando a função de filtro pela seção
@@ -136,23 +132,24 @@ botaoMostrarHortifruti.addEventListener('click', filtrarPorHortifruti)
 //---------------------BUSCA PELO NOME-------------------------------------
 //Realiza a busca dos produtos pelo nome, seção e categoria
 function buscaPorNome(){
-    let pesquisarProdutos = document.querySelector(".campoBuscaPorNome").value.trim()
-	pesquisarProdutos = pesquisaSemAcento(pesquisarProdutos).toLowerCase()
+	 let pesquisarProdutos = pesquisaSemAcento(campoDeBusca.value.toLowerCase().trim()) 
+
 
     const produtoPeloNome = produtos.filter((produto) =>{
         //Verifica as condições para que a busca retorne para os nomes dos produtos, seção e categoria
-        if(pesquisarProdutos === pesquisaSemAcento(produto.nome).toLowerCase()){
-          
+        
+        if(pesquisaSemAcento(produto.nome).toLowerCase().includes(pesquisarProdutos)){
+           
             return produto.nome
         }
         
-        if(pesquisarProdutos === pesquisaSemAcento(produto.secao).toLowerCase()){
+        if(pesquisaSemAcento(produto.secao).toLowerCase().includes(pesquisarProdutos)){
             return produto.secao
         }
 
-        if(pesquisarProdutos === pesquisaSemAcento(produto.categoria).toLowerCase()){
+        if(pesquisaSemAcento(produto.categoria).toLowerCase().includes(pesquisarProdutos)){
             return produto.categoria
-        }
+        } 
 		
         else{
             MensagemProdutoNaoEncontrado(pesquisarProdutos)
@@ -160,17 +157,18 @@ function buscaPorNome(){
 	 
 	})
     montarListaProdutos(produtoPeloNome, templateProdutos, vitrinePrincipal)
-	console.log(pesquisarProdutos)
-    /*
-    //soma os produtos filtrados pelo nome
-    totalProdutos.innerText = " " + somaTotalProdutos(produtoPeloNome) + ".00" 
-    console.log(somaTotalProdutos(produtoPeloNome))*/
     
 }
 
-// Adicionando event listener de clique, e executando a função de filtro pelo nome
+// Intercepta o event listener de clique, e executa a função de filtro pelo nome
 botaoBuscaPorNome.addEventListener('click', buscaPorNome)
 
+// Intercepta o event da tecla Enter e executa a função de filtro pelo nome
+campoDeBusca.addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        buscaPorNome()
+    }
+})
 
 //--------------------MOSTRA TODOS OS PRODUTOS--------------------------
 //Mostra Todos os Produtos do site 
@@ -180,12 +178,6 @@ function mostrarTodosProdutos(){
         return produto.secao
     })
     montarListaProdutos(mostrarProdutos, templateProdutos, vitrinePrincipal)
-    console.log(mostrarProdutos) 
-    /*
-    // Soma todos os produtos disponiveis 
-    totalProdutos.innerText = " " + somaTotalProdutos(mostrarProdutos) + ".00"
-    console.log(somaTotalProdutos(mostrarProdutos))*/
-    
     
 }
  
@@ -226,7 +218,7 @@ function MensagemProdutoNaoEncontrado(msgPesquisaProdutos){
    
 }
 
-function pesquisaSemAcento(str){
+ function pesquisaSemAcento(str){
     
         str = str.replace(/[ã]+/g, "a")
         str = str.replace(/[ç]+/g, "c")
